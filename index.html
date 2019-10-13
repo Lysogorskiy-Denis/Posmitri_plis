@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang=en> 
+<head> 
+<meta charset= "utf-8" >
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="index.css" rel="stylesheet">
+</head> 
+<body>
+  
+  
+  <h2 align="center">ToDo list</h2>
+
+  <h4><button id = btnCompleteTrue class="btn btn-info disabled marker">Completed:</button> <strong id=completeTrue> </strong></h4 >
+  <h4><button id = btnCompleteFalse class="btn btn-secondary disabled marker">Not done:</button><strong id=completeFalse></strong></h4>
+  <h5><button id=showAll class="btn btn-success disabled marker">Show all tasks</button></h5>
+  <div>
+  <button id="DeleteCTasks" class="btn btn-primary">Delete completed tasks</button>
+  </div>
+  <input id="todoInput" class="form-control" placeholder="Enter task" aria-label="Recipient's username" aria-describedby="button-addon2" >
+  <button id="todoBtn" class="btn btn-success">Add</button>
+  <div id="list"></div>
+  </div>
+  <button id="deleteAll" class="btn btn-danger">Clear the list</button>
+  <input type="checkbox"  id="checkbox-all" > Select all 
+
+  <div>
+      <style>
+          table {
+           width: 100%; /* Ширина таблицы */
+          }
+          div {
+           max-width: 1000px; /* Ограничиваем ширину таблицы */
+          }
+         </style>
+    <label id="tasks" class="display-4"> Task list </label>
+  <ul id="out-todo"></ul>             
+  </div>  
+  <div id="pagination"> </div>
+  <script src="jquery-3.4.1.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous" ></script>
+  <script src="bootstrap.min.js"></script> 
+  <script src="./index.js"></script>
+  
+</body>
+</html>

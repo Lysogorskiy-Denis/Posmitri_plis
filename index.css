@@ -1,0 +1,90 @@
+#todoInput{
+    margin-left: 370px; 
+     width: 50%; 
+display: inline;
+}
+#todoBtn{
+    /* margin-left: 450px; */
+     margin-bottom: 6.3px; 
+    /* width: 10%; */ 
+    display: inline;
+}
+#deleteAll{
+    margin-left: 370px;
+    margin-bottom: 6.3px;  
+    display: inline;
+} 
+#btnCompleteTrue{
+    margin-left: 370px;
+    margin-bottom: 6.3px;
+    border-radius: 1.25rem;
+    display: inline;
+} 
+#btnCompleteFalse{
+    margin-left: 370px;
+    margin-bottom: 6.3px;
+    border-radius: 1.25rem;
+    display: inline;
+} 
+#showAll{
+    margin-left: 370px;
+    margin-bottom: 6.3px;
+    display: inline;
+} 
+#DeleteCTasks{
+    margin-left: 370px;
+    margin-bottom: 6.3px;
+    display: inline;
+} 
+#out-todo{
+    margin-left: 370px;
+}
+#pagination{
+    margin-left: 370px;
+}
+#tasks{
+    margin-left: 370px;
+}
+ .text-todo {
+
+    background: #f0f0f0; /* Цвет фона */
+    width: 150px; /* Ширина блока */
+    padding: 0px; /* Поля */
+    word-break: break-all; /* Перенос слов */
+    max-width: 300;
+
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* #todoInput{                                 /* text of todo*/
+  /*  width: 60%;
+    /* white-space: pre-wrap;              /* css-3 */
+   /* white-space: -moz-pre-wrap;            /* Mozilla, начиная с 1999 года */
+   /* white-space: -pre-wrap;          /* Opera 4-6 */
+  /*  white-space: -o-pre-wrap;              /* Opera 7 */
+  /*  word-wrap: break-word;                  /* Internet Explorer 5.5+ */
+  /*  flex-grow: 1;
+  /*  margin-left: 10px;
+   /* margin-right: 10px;
+   /* font-size: 16px;
+   /* }

@@ -4,9 +4,7 @@
 display: inline;
 }
 #todoBtn{
-    /* margin-left: 450px; */
      margin-bottom: 6.3px; 
-    /* width: 10%; */ 
     display: inline;
 }
 #deleteAll{
@@ -47,9 +45,37 @@ display: inline;
     margin-left: 370px;
 }
  .text-todo {
-    /*background: #f0f0f0; /* Цвет фона */
-    width: 150px; /* Ширина блока */
     padding: 0px; /* Поля */
     word-break: break-all; /* Перенос слов */
-    max-width: 300;
  }
+
+.check-todo {
+    align-items: flex-start;
+
+    /* Align to cross-end */
+    align-items: flex-end;
+    
+    /* Центрировать элементы в поперечной оси */
+    align-items: center;
+    
+    /* Выровняйте базовые линии предметов */
+    align-items: baseline;
+    
+    /* Растянуть предметы, чтобы соответствовать */
+    align-items: stretch;
+
+    -webkit-align-self: center; /* Safari 7.0+ */
+
+     align-self: center;
+}
+.middle-pag {
+    color: #fff;
+    display: flex;
+}
+.middle-pag > td {
+display: flex;
+align-items: center;
+}
+td.middle-pag__text {
+    flex: 1
+}

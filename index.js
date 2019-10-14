@@ -6,7 +6,6 @@ $(document).ready(() => {
   const todoOnPage = 5;
   const btnEnter = 13
 
-
   let mass = [];
   let complete = [];
   let laziness = [];
@@ -15,6 +14,7 @@ $(document).ready(() => {
   let howMachPage;
 
   function countTrue() {
+   
     complete = mass.filter(item => item.checked === true);
     lengthTrue = complete.length;
     $('#completeTrue').html(lengthTrue);
@@ -25,10 +25,14 @@ $(document).ready(() => {
 
   function verification() {
     countTrue();
+
     if (choice === 'com') {
+      nowPage 
       render(complete);
     } else if (choice === 'laz') {
+      nowPage 
       render(laziness);
+      nowPage 
     } else {
       render(mass);
     }
@@ -111,10 +115,7 @@ function pagination(glob){
 
     for (i = 1; i <= howMachPage; ++i) {
       stringPagination += `
-      <li id=${i} class="page-item pgntn ${i == nowPage ? 'active' : ''}"><a class="page-link" href="#">${i}</a></li>`;
-      console.log(nowPage);
-      console.log("howMachPage", howMachPage);
-
+      <li id=${i} class="page-item pgntn ${i == nowPage ? 'active' : ''}"><a class="page-link" href="#">${i}</a></li>`
     }
     stringPagination += `<li id = right class="page-item ${howMachPage == nowPage ? 'disabled' : ''}"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li ></ul></nav>`;
     $(`#pagination`).html(stringPagination);
@@ -122,32 +123,25 @@ function pagination(glob){
 
   let str = '';
 
-
   if (howMachPage < nowPage) {
     nowPage = howMachPage;
   }
 
- 
   glob.forEach((item, i) => {
     if ((nowPage - 1) * todoOnPage <= i && i < nowPage * 5) {
-      str += `<tr class="midle-pag"> <td id="${item.id}"><input type="checkbox" class="check-todo " ${item.checked ? 'checked' : ''} /></td>
+      str += `<tr class="midle-pag" style="color:#fff"> <td id="${item.id}"><input type="checkbox" class="check-todo " ${item.checked ? 'checked' : ''} /></td>
       <td id="${item.id}" >  <span class="text-todo"> ${item.text} </span> </td>
       <td id="${item.id}" >  <button class="delete-td btn btn-outline-danger"> X </button></td>
       </tr>`;
     }
   });
-
   return str;
-
 }
 
   function render(glob) {
     const isEveryChecked = mass.every(item => item.checked);
     $('#checkbox-all').prop('checked', isEveryChecked);
-    
-    
     $(`#out-todo`).html(pagination(glob));
-    
   }
 
   $(document).on(`click`, '#left', () => {
@@ -157,7 +151,6 @@ function pagination(glob){
 
   $(document).on(`click`, '#right', () => {
     if (nowPage < howMachPage)  ++nowPage;
-   
     verification();
   });
 
@@ -178,7 +171,6 @@ function pagination(glob){
 
   $(document).on('click', '.delete-td', function() {
     const b = $(this).parent().attr(`id`);
-    
     mass.forEach((item, index) => {
       if (b == item.id) {
         mass.splice(index, 1);
@@ -202,6 +194,7 @@ function pagination(glob){
     mass.forEach(item => {
       item.checked = check;
     });
+    nowPage = 1
     verification();
   });
 
@@ -213,10 +206,12 @@ function pagination(glob){
   $(document).on('click', '#btnCompleteTrue', function() {
     marking($(this));
     choice = 'com';
+    if(nowPage===0) nowPage=1
     verification();
   });
 
   $(document).on('click', '#btnCompleteFalse', function() {
+    if(nowPage===0) nowPage=1
     choice = 'laz';
     marking($(this));
     verification();

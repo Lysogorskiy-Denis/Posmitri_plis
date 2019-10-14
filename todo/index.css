@@ -1,0 +1,81 @@
+#todoInput{
+    margin-left: 370px; 
+     width: 50%; 
+display: inline;
+}
+#todoBtn{
+     margin-bottom: 6.3px; 
+    display: inline;
+}
+#deleteAll{
+    margin-left: 370px;
+    margin-bottom: 6.3px;  
+    display: inline;
+} 
+#btnCompleteTrue{
+    margin-left: 370px;
+    margin-bottom: 6.3px;
+    border-radius: 1.25rem;
+    display: inline;
+} 
+#btnCompleteFalse{
+    margin-left: 370px;
+    margin-bottom: 6.3px;
+    border-radius: 1.25rem;
+    display: inline;
+} 
+#showAll{
+    margin-left: 370px;
+    margin-bottom: 6.3px;
+    display: inline;
+} 
+#DeleteCTasks{
+    margin-left: 370px;
+    margin-bottom: 6.3px;
+    display: inline;
+} 
+#out-todo{
+    margin-left: 370px;
+    font-size: 25px;
+}
+#pagination{
+    margin-left: 370px;
+}
+#tasks{
+    margin-left: 370px;
+}
+ .text-todo {
+    padding: 0px; /* Поля */
+    word-break: break-all; /* Перенос слов */
+ }
+
+.check-todo {
+    align-items: flex-start;
+
+    /* Align to cross-end */
+    align-items: flex-end;
+    
+    /* Центрировать элементы в поперечной оси */
+    align-items: center;
+    
+    /* Выровняйте базовые линии предметов */
+    align-items: baseline;
+    
+    /* Растянуть предметы, чтобы соответствовать */
+    align-items: stretch;
+
+    -webkit-align-self: center; /* Safari 7.0+ */
+
+     align-self: center;
+}
+.middle-pag {
+    color: #fff;
+    display: flex;
+}
+.middle-pag > td {
+display: flex;
+align-items: center;
+}
+td.middle-pag__text {
+    flex: 1
+}

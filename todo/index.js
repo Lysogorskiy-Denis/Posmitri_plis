@@ -1,10 +1,11 @@
+/* eslint-disable linebreak-style */
 $(document).ready(() => {
-  const $todoBTN = $('#todoBtn');
+  const $todoButton = $('#todo-button');
   const $todoInput = $('#todoInput');
-  const $DltCTasks = $('#DeleteCTasks');
-  const $dltAll = $('#deleteAll');
-  const todoOnPage = 5;
-  const btnEnter = 13;
+  const $deleteCompleteTasks = $('#delete-complete-tasks');
+  const $deleteAll = $('#delete-all');
+  const TODO_ON_PAGE = 5;
+  const BUTTON_ENTER = 13;
 
   let mass = [];
   let complete = [];
@@ -12,119 +13,24 @@ $(document).ready(() => {
   let choice = 'all';
   let nowPage = 1;
   let howMachPage;
+  let isEveryChecked;
 
-  function countTrue() {
-
+  const countTrue = function() {
     complete = mass.filter(item => item.checked === true);
-    lengthTrue = complete.length;
-    $('#completeTrue').html(lengthTrue);
+    const { length: lengthTrue } = complete;
+
+
+    $('#complete-true').html(lengthTrue);
     laziness = mass.filter(item => item.checked === false);
-    lengthFalse = laziness.length;
-    $('#completeFalse').html(lengthFalse);
-  }
+    const { length: lengthFalse } = laziness;
 
-  function verification() {
-    countTrue();
-    if (choice === 'com') {
-      nowPage;
-      render(complete);
-    } else if (choice === 'laz') {
-      nowPage;
-      render(laziness);
-      nowPage;
-    } else {
-      render(mass);
-    }
-  }
 
-  function AddListTask() {
-    const text = $todoInput.val().trim().replace(/&/g, '&amp;')
-      .replace(/~/g, '').replace(/{/g, '').replace(/"/g, '&quot;')
-      .replace(/#/g, '').replace(/</g, '&lt;').replace(/}/g, '')
-      .replace(/>/g, '&gt;').replace(/'/g, '&#39;').replace(/[=]/g, '&#x3D;');
+    $('#complete-false').html(lengthFalse);
+  };
 
-    const newTodo = {
-      text: text.trim(),
-      checked: false,
-      id: Date.now(),
-    };
 
-    if (text === '') return;
-    mass.unshift(newTodo);
-    $todoInput.prop('value', '');
-    verification();
-  }
-
-  $dltAll.on('click', () => {
-    mass = [];
-    verification();
-  });
-
-  $DltCTasks.on('click', () => {
-    mass = mass.filter(item => !item.checked);
-    verification();
-  });
-
-  $todoBTN.on('click',  function() {
-    
-    nowPage = 1;
-    choice = 'all';
-    AddListTask();
-    $('.marker').addClass('btn-success');
-    $('.marker').removeClass('btn-warning');
-    $(`#showAll`).removeClass('btn-success').addClass('btn-warning');
-    verification();
-  });
-
-  $(document).on(`dblclick`, `.text-todo`, function() {
-    console.log("dblclick")
-    $(this).replaceWith(`<input type="text.val" 
-                            id="newText"
-                            class="new-input form-control"
-                            value="${$(this).text()}"/>`);
-    $('#newText').focus()
-    $(document).on('blur', `.new-input`, function(blurFun) {
-      blurFun.which = btnEnter
-        const id = $(this).parent().attr(`id`);
-        const newText = $(this).val().trim().replace(/'/g, '&#39;')
-        .replace(/&/g, '&amp;').replace(/~/g, '').replace(/{/g, '')
-          .replace(/"/g, '&quot;').replace(/#/g, '').replace(/</g, '&lt;')
-          .replace(/}/g, '').replace(/>/g, '&gt;').replace(/[=]/g, '&#x3D;');
-  
-        mass.forEach(item => {
-          if (id == item.id) {
-            if (newText !== '') {
-              item.text = newText;
-            }
-          }
-        });
-        verification();
-      
-    });
-    
-  });
-
-  $(document).on('keypress', `.new-input`, function(ent) {
-    if (ent.which === btnEnter) {
-      const id = $(this).parent().attr(`id`);
-        const newText = $(this).val().trim().replace(/'/g, '&#39;')
-        .replace(/&/g, '&amp;').replace(/~/g, '').replace(/{/g, '')
-          .replace(/"/g, '&quot;').replace(/#/g, '').replace(/</g, '&lt;')
-          .replace(/}/g, '').replace(/>/g, '&gt;').replace(/[=]/g, '&#x3D;');
-
-      mass.forEach(item => {
-        if (id == item.id) {
-          if (newText !== '') {
-            item.text = newText;
-          }
-        }
-      });
-      verification();
-    }
-  });
-
-  function pagination(glob) {
-    howMachPage = Math.ceil(glob.length / todoOnPage);
+  const pagination = function(glob) {
+    howMachPage = Math.ceil(glob.length / TODO_ON_PAGE);
     if (nowPage > howMachPage) {
       nowPage = howMachPage;
     }
@@ -132,15 +38,22 @@ $(document).ready(() => {
     $('#pagination').html('');
     if (howMachPage > 1) {
       let stringPagination = '<nav aria-label="Page navigation example ">'
-                          + ` <ul class="pagination"> <li id = left class="page-item ${nowPage == 1 ? 'disabled' : ''} "> `
-                          + ' <a class="page-link" href="#" aria-label="Previous"> '
-                          + '<span aria-hidden="true">&laquo;</span></a></li>';
++ ` <ul class="pagination">`
++ ` <li id = left class="page-item ${nowPage === 1 ? 'disabled' : ''} "> `
++ ' <a class="page-link" href="#" aria-label="Previous"> '
++ '<span aria-hidden="true">&laquo;</span></a></li>';
 
-      for (i = 1; i <= howMachPage; ++i) {
+      for (let i = 1; i <= howMachPage; ++i) {
         stringPagination += `
-      <li id=${i} class="page-item pgntn ${i == nowPage ? 'active' : ''}"><a class="page-link" href="#">${i}</a></li>`;
+      <li id=${i} class="page-item pgntn ${i === nowPage ? 'active' : ''}">
+      <a class="page-link" href="#">${i}</a></li>`;
       }
-      stringPagination += `<li id = right class="page-item ${howMachPage == nowPage ? 'disabled' : ''}"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li ></ul></nav>`;
+      stringPagination
+      += `<li id = right 
+        class="page-item ${howMachPage === nowPage ? 'disabled' : ''}">
+      <a class="page-link" href="#" aria-label="Next">
+      <span aria-hidden="true">&raquo;
+      </span></a></li ></ul></nav>`;
       $(`#pagination`).html(stringPagination);
     }
 
@@ -151,26 +64,145 @@ $(document).ready(() => {
     }
 
     glob.forEach((item, i) => {
-      if ((nowPage - 1) * todoOnPage <= i && i < nowPage * 5) {
-        str += `<tr class="middle-pag"> <td id="${item.id}"><input type="checkbox" class="check-todo " ${item.checked ? 'checked' : ''} /></td>
-      <td id="${item.id}" class="middle-pag__text"  >  <span class="text-todo"> ${item.text} </span> </td>
-      <td id="${item.id}" >  <button class="delete-td btn btn-outline-danger"> X </button></td>
+      if ((nowPage - 1) * TODO_ON_PAGE <= i && i < nowPage * TODO_ON_PAGE) {
+        str += `<tr class="middle-pag">
+         <td id="${item.id}">
+          <input type="checkbox" 
+            class="check-todo " ${item.checked ? 'checked' : ''} />
+         </td>
+      <td id="${item.id}"class="middle-pag__text">
+      <span class="text-todo"> 
+      ${item.text}
+       </span> </td>
+      <td id="${item.id}" > <button class="delete-td btn btn-outline-danger"> X 
+      </button></td>
       </tr>`;
       }
     });
 
     return str;
-  }
-  let isEveryChecked
-  function render(glob) {
-    if(mass.length){
-    isEveryChecked = mass.every(item => item.checked);
+  };
+
+  const render = function(glob) {
+    if (mass.length) {
+      isEveryChecked = mass.every(item => item.checked);
     } else {
-      isEveryChecked = false
+      isEveryChecked = false;
     }
     $('#checkbox-all').prop('checked', isEveryChecked);
     $(`#out-todo`).html(pagination(glob));
-  }
+  };
+
+  const verification = function() {
+    countTrue();
+    if (choice === 'com') {
+      render(complete);
+    } else if (choice === 'laz') {
+      render(laziness);
+    } else {
+      render(mass);
+    }
+  };
+
+  const addListTask = function() {
+    const text = $todoInput.val().trim()
+      .replace(/&/gu, '&amp;')
+      .replace(/~/gu, '')
+      .replace(/"/gu, '&quot;')
+      .replace(/#/gu, '')
+      .replace(/</gu, '&lt;')
+      .replace(/>/gu, '&gt;')
+      .replace(/'/gu, '&#39;');
+
+    const newTodo = {
+      checked: false,
+      id: Date.now(),
+      text: text.trim(),
+    };
+
+    if (text === '') return;
+    mass.unshift(newTodo);
+    $todoInput.prop('value', '');
+    verification();
+  };
+
+  $deleteAll.on('click', () => {
+    mass = [];
+    verification();
+  });
+
+  $deleteCompleteTasks.on('click', () => {
+    mass = mass.filter(item => !item.checked);
+    verification();
+  });
+
+  $todoButton.on('click', () => {
+    nowPage = 1;
+    choice = 'all';
+    addListTask();
+    $('.marker').addClass('btn-success');
+    $('.marker').removeClass('btn-warning');
+    $(`#show-all`).removeClass('btn-success')
+      .addClass('btn-warning');
+    verification();
+  });
+
+  $(document).on(`dblclick`, `.text-todo`, function() {
+    $(this).replaceWith(`<input type="text.val" 
+                            id="newText"
+                            class="new-input form-control"
+                            value="${$(this).text()}"/>`);
+    $('#newText').focus();
+    $(document).on('blur', `.new-input`, function(blurFun) {
+      blurFun.which = BUTTON_ENTER;
+      const id = parseInt($(this).parent()
+        .attr(`id`));
+      const newText = $(this).val()
+        .trim()
+        .replace(/&/gu, '&amp;')
+        .replace(/~/gu, '')
+        .replace(/"/gu, '&quot;')
+        .replace(/#/gu, '')
+        .replace(/</gu, '&lt;')
+        .replace(/>/gu, '&gt;')
+        .replace(/'/gu, '&#39;');
+
+      mass.forEach(item => {
+        if (id === item.id) {
+          if (newText !== '') {
+            item.text = newText;
+          }
+        }
+      });
+      verification();
+    });
+  });
+
+  $(document).on('keypress', `.new-input`, function(ent) {
+    if (ent.which === BUTTON_ENTER) {
+      const id = parseInt($(this).parent()
+        .attr(`id`));
+      const newText = $(this).val()
+        .trim()
+        .replace(/&/gu, '&amp;')
+        .replace(/~/gu, '')
+        .replace(/"/gu, '&quot;')
+        .replace(/#/gu, '')
+        .replace(/</gu, '&lt;')
+        .replace(/>/gu, '&gt;')
+        .replace(/'/gu, '&#39;');
+
+      mass.forEach(item => {
+        if (id === item.id) {
+          if (newText !== '') {
+            item.text = newText;
+          }
+        }
+      });
+      verification();
+    }
+  });
+
 
   $(document).on(`click`, '#left', () => {
     if (nowPage > 1) --nowPage;
@@ -183,17 +215,18 @@ $(document).ready(() => {
   });
 
   $(document).on(`click`, '.pgntn', function() {
-    nowPage = $(this).attr(`id`);
+    nowPage = parseInt($(this).attr(`id`));
+
     verification();
   });
 
   $(document).on(`change`, `.check-todo`, function() {
-    const a = $(this).parent()
-      .attr(`id`);
+    const changeCheck = parseInt($(this).parent()
+      .attr(`id`));
 
 
     mass.forEach(item => {
-      if (a == item.id) {
+      if (changeCheck === item.id) {
         item.checked = !item.checked;
       }
     });
@@ -201,12 +234,12 @@ $(document).ready(() => {
   });
 
   $(document).on('click', '.delete-td', function() {
-    const b = $(this).parent()
-      .attr(`id`);
+    const clickDelete = parseInt($(this).parent()
+      .attr(`id`));
 
 
     mass.forEach((item, index) => {
-      if (b == item.id) {
+      if (clickDelete === item.id) {
         mass.splice(index, 1);
       }
       if (nowPage > howMachPage) {
@@ -217,19 +250,20 @@ $(document).ready(() => {
   });
 
   $(`#todoInput`).on('keypress', ent => {
-    if (ent.which === btnEnter) {
+    if (ent.which === BUTTON_ENTER) {
       nowPage = 1;
       choice = 'all';
-    AddListTask();
-    $('.marker').addClass('btn-success');
-    $('.marker').removeClass('btn-warning');
-    $(`#showAll`).removeClass('btn-success').addClass('btn-warning');
-    verification();
+      addListTask();
+      $('.marker').addClass('btn-success');
+      $('.marker').removeClass('btn-warning');
+      $(`#show-all`).removeClass('btn-success')
+        .addClass('btn-warning');
+      verification();
     }
   });
 
   $('#checkbox-all').on('change', () => {
-    let check = $('#checkbox-all').prop(`checked`);
+    const check = $('#checkbox-all').prop(`checked`);
 
 
     mass.forEach(item => {
@@ -239,30 +273,28 @@ $(document).ready(() => {
     verification();
   });
 
-  function marking(thisButton) {
+  const marking = function(thisButton) {
     $('.marker').addClass('btn-success');
     $('.marker').removeClass('btn-warning');
-    //  $(`#btnCompleteFalse`) .removeClass('disabled').addClass('active');
-    // $(`#${thisButton}`)  
-    // thisButton -строка , в которой ид
     thisButton.removeClass('btn-success').addClass('btn-warning');
-  }
+  };
 
-  $(document).on('click', '#btnCompleteTrue', function() {
+  $(document).on('click', '#button-complete-true', function() {
     marking($(this));
     choice = 'com';
     if (nowPage === 0) nowPage = 1;
     verification();
   });
 
-  $(document).on('click', '#btnCompleteFalse', function() {
+  $(document).on('click', '#button-complete-false', function() {
     if (nowPage === 0) nowPage = 1;
     choice = 'laz';
     marking($(this));
     verification();
   });
 
-  $(document).on('click', '#showAll', function() {
+  $(document).on('click', '#show-all', function() {
+    if (nowPage === 0) nowPage = 1;
     choice = 'all';
     marking($(this));
     verification();

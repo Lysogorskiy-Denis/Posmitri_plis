@@ -3,33 +3,33 @@
      width: 50%; 
 display: inline;
 }
-#todoBtn{
+#todo-button{
      margin-bottom: 6.3px; 
     display: inline;
 }
-#deleteAll{
+#delete-all{
     margin-left: 370px;
     margin-bottom: 6.3px;  
     display: inline;
 } 
-#btnCompleteTrue{
+#button-complete-true{
     margin-left: 370px;
     margin-bottom: 6.3px;
     border-radius: 1.25rem;
     display: inline;
 } 
-#btnCompleteFalse{
+#button-complete-false{
     margin-left: 370px;
     margin-bottom: 6.3px;
     border-radius: 1.25rem;
     display: inline;
 } 
-#showAll{
+#show-all{
     margin-left: 370px;
     margin-bottom: 6.3px;
     display: inline;
 } 
-#DeleteCTasks{
+#delete-complete-tasks{
     margin-left: 370px;
     margin-bottom: 6.3px;
     display: inline;
@@ -45,27 +45,17 @@ display: inline;
     margin-left: 370px;
 }
  .text-todo {
-    padding: 0px; /* Поля */
-    word-break: break-all; /* Перенос слов */
+    padding: 0px;
+    word-break: break-all;
  }
 
 .check-todo {
     align-items: flex-start;
-
-    /* Align to cross-end */
     align-items: flex-end;
-    
-    /* Центрировать элементы в поперечной оси */
     align-items: center;
-    
-    /* Выровняйте базовые линии предметов */
     align-items: baseline;
-    
-    /* Растянуть предметы, чтобы соответствовать */
     align-items: stretch;
-
-    -webkit-align-self: center; /* Safari 7.0+ */
-
+    -webkit-align-self: center; 
      align-self: center;
 }
 .middle-pag {
@@ -78,4 +68,15 @@ align-items: center;
 }
 td.middle-pag__text {
     flex: 1
+}
+.wer{
+width: 100%;
+max-width: 1350px;
+}
+.todo-list{
+    margin-left: 700px;
+}
+.back-ground{
+    background: #c7b39b url(todos.jpg);
+    color: #fff;
 }
